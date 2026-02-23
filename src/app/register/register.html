@@ -1,1 +1,22 @@
-<h1>Register</h1>
+<form [formGroup]="registerForm" (ngSubmit)="submit()">
+
+  <input placeholder="Name" formControlName="name">
+  <small *ngIf="registerForm.get('name')?.invalid && registerForm.get('name')?.touched">
+    Name required
+  </small>
+
+  <input placeholder="Email" formControlName="email">
+  <small *ngIf="registerForm.get('email')?.errors?.['email']">
+    Invalid email
+  </small>
+
+  <input type="password" placeholder="Password" formControlName="password">
+  <small *ngIf="registerForm.get('password')?.errors?.['minlength']">
+    Min 6 characters
+  </small>
+
+  <input type="password" placeholder="Confirm Password" formControlName="confirmPassword">
+
+  <button [disabled]="registerForm.invalid">Register</button>
+
+</form>
