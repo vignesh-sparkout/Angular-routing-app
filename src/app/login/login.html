@@ -1,33 +1,49 @@
-<form #loginForm="ngForm" (ngSubmit)="submit(loginForm)">
+<section class="login-shell">
+  <form class="login-card" #loginForm="ngForm" (ngSubmit)="submit(loginForm)">
+    <div class="card-head">
+      <h1 >Log in</h1>
+    </div>
 
-  <input
-    type="email"
-    name="email"
-    [(ngModel)]="formData.email"
-    #email="ngModel"
-    required
-    email
-    placeholder="Email"
-  >
-  <small *ngIf="email.invalid && email.touched">
-    <span *ngIf="email.errors?.['required']">Email is required</span>
-    <span *ngIf="email.errors?.['email']">Enter a valid email</span>
-  </small>
+    <div class="field">
+      <label for="email">Email address</label>
+      <input
+        id="email"
+        type="email"
+        name="email"
+        [(ngModel)]="formData.email"
+        #email="ngModel"
+        required
+        email
+        autocomplete="email"
+        placeholder="name@company.com"
+      >
+      <small class="field-error" *ngIf="email.invalid && email.touched">
+        <span *ngIf="email.errors?.['required']">Email is required</span>
+        <span *ngIf="email.errors?.['email']">Please enter a valid email</span>
+      </small>
+    </div>
 
-  <input
-    type="password"
-    name="password"
-    [(ngModel)]="formData.password"
-    #password="ngModel"
-    required
-    placeholder="Password"
-  >
-  <small *ngIf="password.invalid && password.touched">
-    Password is required
-  </small>
+    <div class="field">
+      <label for="password">Password</label>
+      <input
+        id="password"
+        type="password"
+        name="password"
+        [(ngModel)]="formData.password"
+        #password="ngModel"
+        required
+        autocomplete="current-password"
+        placeholder="Enter your password"
+      >
+      <small class="field-error" *ngIf="password.invalid && password.touched">
+        Password is required
+      </small>
+    </div>
 
-  <p *ngIf="errorMessage">{{ errorMessage }}</p>
+    <p class="form-error" *ngIf="errorMessage">{{ errorMessage }}</p>
 
-  <button type="submit" [disabled]="loginForm.invalid">Login</button>
+    <button type="submit" [disabled]="loginForm.invalid">Sign in</button>
 
-</form>
+    <p class="help-text">No account yet? Please register first.</p>
+  </form>
+</section>

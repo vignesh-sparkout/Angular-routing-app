@@ -1,9 +1,9 @@
+<section class="dashboard-shell">
+  <div class="dashboard-card">
+    <p class="badge">Dashboard</p>
+    <h1>Welcome, {{ userName }}!</h1>
+    <p class="subtitle">You are successfully logged in.</p>
 
-
-  <a routerLink="/">Login</a> |
-  <a routerLink="/register">Register</a> |
-  <a routerLink="/dashboard">Dashboard</a>
-
-
-
-<p>Dashboard</p>
+    <button type="button" (click)="logout()">Logout</button>
+  </div>
+</section>

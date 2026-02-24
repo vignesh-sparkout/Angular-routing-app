@@ -1,0 +1,130 @@
+.register-shell {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px 16px;
+  background:
+    radial-gradient(circle at 85% 12%, rgba(255, 255, 255, 0.38) 0%, transparent 32%),
+    radial-gradient(circle at 8% 88%, rgba(255, 255, 255, 0.3) 0%, transparent 28%),
+    linear-gradient(140deg, #edd8b7 0%, #c79b6d 100%);
+}
+
+.register-card {
+  width: min(100%, 460px);
+  padding: 30px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(123, 79, 43, 0.22);
+  box-shadow: 0 20px 50px rgba(52, 34, 16, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.card-head {
+  margin-bottom: 4px;
+}
+
+.badge {
+  display: inline-flex;
+  margin: 0 0 10px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #f5e6d4;
+  color: #7a4f2b;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.card-head h1 {
+  margin: 0;
+  color: #29190c;
+  font-size: 1.65rem;
+  line-height: 1.25;
+}
+
+.subtitle {
+  margin: 8px 0 0;
+  color: #6b4c2f;
+  font-size: 0.92rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.field label {
+  color: #5f3d1f;
+  font-size: 0.9rem;
+  font-weight: 650;
+}
+
+.register-card input {
+  border: 1px solid #ccab82;
+  border-radius: 11px;
+  padding: 11px 12px;
+  font-size: 0.96rem;
+  color: #29190c;
+  background: #fffdfa;
+  outline: none;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease;
+}
+
+.register-card input:focus {
+  border-color: #8f5d36;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(143, 93, 54, 0.18);
+}
+
+.field-error {
+  color: #b3261e;
+  font-size: 0.82rem;
+  min-height: 15px;
+}
+
+.form-error {
+  margin: -2px 0 0;
+  color: #b3261e;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.register-card button {
+  margin-top: 4px;
+  border: 0;
+  border-radius: 11px;
+  padding: 11px 14px;
+  background: linear-gradient(92deg, #6d421e, #a86a34);
+  color: #fff;
+  font-size: 0.96rem;
+  font-weight: 650;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.register-card button:hover:enabled {
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(109, 66, 30, 0.32);
+}
+
+.register-card button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+@media (max-width: 480px) {
+  .register-card {
+    padding: 24px 18px;
+    border-radius: 14px;
+  }
+
+  .card-head h1 {
+    font-size: 1.4rem;
+  }
+}

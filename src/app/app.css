@@ -1,0 +1,9 @@
+.content-body {
+    min-height: 100%;
+    display: block;
+    width: 100%;
+     background:
+    radial-gradient(circle at 85% 12%, rgba(255, 255, 255, 0.38) 0%, transparent 32%),
+    radial-gradient(circle at 8% 88%, rgba(255, 255, 255, 0.3) 0%, transparent 28%),
+    linear-gradient(140deg, #edd8b7 0%, #c79b6d 100%);
+}
