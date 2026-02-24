@@ -42,8 +42,14 @@
 
     <p class="form-error" *ngIf="errorMessage">{{ errorMessage }}</p>
 
-    <button type="submit" [disabled]="loginForm.invalid">Sign in</button>
-
-    <p class="help-text">No account yet? Please register first.</p>
+    <button type="submit" >Sign in</button>
+<p class="reg-link">
+      Don't have an account? 
+      <a routerLink="/register"
+        routerLinkActive="active-link"
+        class="create-link"
+       > Create Account</a> 
+</p>
+   
   </form>
 </section>
