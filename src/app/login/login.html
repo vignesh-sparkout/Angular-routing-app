@@ -1,0 +1,33 @@
+<form #loginForm="ngForm" (ngSubmit)="submit(loginForm)">
+
+  <input
+    type="email"
+    name="email"
+    [(ngModel)]="formData.email"
+    #email="ngModel"
+    required
+    email
+    placeholder="Email"
+  >
+  <small *ngIf="email.invalid && email.touched">
+    <span *ngIf="email.errors?.['required']">Email is required</span>
+    <span *ngIf="email.errors?.['email']">Enter a valid email</span>
+  </small>
+
+  <input
+    type="password"
+    name="password"
+    [(ngModel)]="formData.password"
+    #password="ngModel"
+    required
+    placeholder="Password"
+  >
+  <small *ngIf="password.invalid && password.touched">
+    Password is required
+  </small>
+
+  <p *ngIf="errorMessage">{{ errorMessage }}</p>
+
+  <button type="submit" [disabled]="loginForm.invalid">Login</button>
+
+</form>
