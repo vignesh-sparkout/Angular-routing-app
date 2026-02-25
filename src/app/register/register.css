@@ -128,3 +128,20 @@
     font-size: 1.4rem;
   }
 }
+
+/* login link button styles */
+
+.create-link {
+  color: #6d421e;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+.create-link:hover {
+  text-decoration: underline;
+}
+.active-link {
+  color: #a86a34;
+  font-weight: 700;
+  text-decoration: underline;
+}

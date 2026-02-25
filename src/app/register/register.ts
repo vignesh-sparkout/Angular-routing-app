@@ -9,7 +9,7 @@ import {
   ValidatorFn,
   Validators
 } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router , RouterModule} from '@angular/router';
 
 const passwordMatchValidator: ValidatorFn = (
   control: AbstractControl
@@ -29,7 +29,7 @@ const passwordMatchValidator: ValidatorFn = (
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule],
   templateUrl: './register.html',
   styleUrls: ['./register.css']
 })

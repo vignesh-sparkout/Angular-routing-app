@@ -1,0 +1,13 @@
+<h2><b>Date Pipes</b></h2> <br>
+<p>Un Formatted Date {{today}}</p>
+<p>Formatted Date {{today | date}}</p>
+<p>Medium Date {{today | date : 'medium'}}</p>
+<p>Short Date {{today | date : 'short'}}</p>
+<p>Full Date {{ today | date : 'fullDate'}}</p>
+<p>Long Date {{ today | date : 'longDate'}}</p>
+<br>
+<b><p>Slice pipes {{title | slice :0:12}}</p></b>
+<h2>Items List</h2>
+<ul>
+    <li *ngFor=" let item of items">{{item}}</li>
+</ul>
