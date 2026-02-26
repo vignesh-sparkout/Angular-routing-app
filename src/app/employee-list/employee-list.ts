@@ -134,6 +134,21 @@ export class EmployeeList {
   }
 
   onDelete(id: string) {
-    this.employees = this.employees.filter((emp) => emp.id !== id);
+    this.employeeToDelete = this.employees.find(emp => emp.id === id) || null;
+    this.showDeleteModal = true; 
+  }
+  showDeleteModal = false;
+  employeeToDelete: Employee | null = null;
+
+  confirmDelete() {
+    if (!this.employeeToDelete) return;
+    this.employees = this.employees.filter(emp => emp.id !== this.employeeToDelete!.id);
+    this.showDeleteModal = false;
+    this.employeeToDelete = null;
+  }
+  
+  cancelDelete() {
+    this.showDeleteModal = false;
+    this.employeeToDelete = null;
   }
 }
