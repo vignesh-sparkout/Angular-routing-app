@@ -19,7 +19,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let emp of employees">
+          <tr *ngFor="let emp of employees; let i = index">
             <td>{{ emp.id }}</td>
             <td>{{ emp.name }}</td>
             <td>{{ emp.gender }}</td>
@@ -31,7 +31,7 @@
               </span>
             </td>
             <td class="action-group">
-              <button class="btn-edit" (click)="onEdit(emp)">Edit</button>
+              <button class="btn-edit" (click)="onEdit(emp, i)">Edit</button>
               <button class="btn-delete" (click)="onDelete(emp.id)">Delete</button>
             </td>
           </tr>
@@ -42,7 +42,7 @@
 
   <div class="modal-backdrop" *ngIf="showAddModal">
     <div class="modal-card">
-      <h3>Add Employee</h3>
+      <h3>{{ isEditMode ? 'Edit Employee' : 'Add Employee' }}</h3>
 
       <form #empForm="ngForm" (ngSubmit)="onSaveEmployee(empForm)" novalidate>
         <div class="form-grid">
@@ -105,7 +105,7 @@
         </div>
 
         <div class="modal-actions">
-          <button type="submit" class="btn-save">Save</button>
+          <button type="submit" class="btn-save">{{ isEditMode ? 'Update' : 'Save' }}</button>
           <button type="button" class="btn-cancel" (click)="onCancelAdd()">Cancel</button>
         </div>
       </form>

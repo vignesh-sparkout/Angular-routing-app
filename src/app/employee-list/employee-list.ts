@@ -24,6 +24,8 @@ type Employee = {
 export class EmployeeList {
   showAddModal = false;
   formSubmitted = false;
+  isEditMode = false;
+  editingIndex: number | null = null;
 
   roleOptions = ['Admin', 'Project Manager', 'Developer', 'Designer', 'Team Leader', 'HR'];
   statusOptions: Array<'Active' | 'Inactive'> = ['Active', 'Inactive'];
@@ -56,7 +58,7 @@ export class EmployeeList {
       status: 'Active',
       joiningDate: '2022-06-15',
     },
-     {
+    {
       id: '004',
       name: 'Samantha',
       gender: 'Female',
@@ -85,19 +87,31 @@ export class EmployeeList {
   onAddEmployee() {
     this.showAddModal = true;
     this.formSubmitted = false;
+    this.isEditMode = false;
+    this.editingIndex = null;
     this.newEmployee = this.getEmptyEmployee();
+  }
+
+  onEdit(emp: Employee, index: number) {
+    this.showAddModal = true;
+    this.formSubmitted = false;
+    this.isEditMode = true;
+    this.editingIndex = index;
+    this.newEmployee = { ...emp };
   }
 
   onCancelAdd() {
     this.showAddModal = false;
     this.formSubmitted = false;
+    this.isEditMode = false;
+    this.editingIndex = null;
   }
 
   onSaveEmployee(form: NgForm) {
     this.formSubmitted = true;
     if (form.invalid) return;
 
-    const employeeToAdd: Employee = {
+    const employeeData: Employee = {
       ...this.newEmployee,
       id: this.newEmployee.id.trim(),
       name: this.newEmployee.name.trim(),
@@ -105,14 +119,18 @@ export class EmployeeList {
       phone: this.newEmployee.phone?.trim(),
     };
 
-    this.employees = [...this.employees, employeeToAdd];
+    if (this.isEditMode && this.editingIndex !== null) {
+      this.employees[this.editingIndex] = employeeData;
+      this.employees = [...this.employees];
+    } else {
+      this.employees = [...this.employees, employeeData];
+    }
+
     this.showAddModal = false;
     this.formSubmitted = false;
+    this.isEditMode = false;
+    this.editingIndex = null;
     this.newEmployee = this.getEmptyEmployee();
-  }
-
-  onEdit(emp: Employee) {
-    console.log('Edit Employee:', emp);
   }
 
   onDelete(id: string) {
