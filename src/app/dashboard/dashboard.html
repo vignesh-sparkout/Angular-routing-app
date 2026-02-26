@@ -2,14 +2,25 @@
 <div class="layout">
   <aside class="sidebar">
     <nav class="menu">
-      <a routerLink="/dashboard" routerLinkActive="active" class="item">Dashboard</a>
-      <a routerLink="/employee-list" routerLinkActive="active" class="item">Employee Management</a>
-      <button type="button" class="item logout" (click)="logout()">Logout</button>
+      <a routerLink="/dashboard" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active" class="item">Dashboard</a>
+      <a routerLink="/dashboard/employee-list" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active" class="item">Employee Dashboard</a>
     </nav>
   </aside>
+  <section class="main-area">
+    <header class="top-navbar">
+        <h2 class="nav-title">Home</h2>
+        <button type="button" class="top-logout-btn" (click)="logout()">Logout</button>
+      </header>
 
   <main class="content">
-    <h1>Welcome {{ userName }}!</h1>
-    <p class="subtitle">You are successfully logged in.</p>
+    <ng-container *ngIf="!hasChildRoute(); else childView">
+      <h1>Welcome {{ userName }}!</h1>
+      <p class="subtitle">You are successfully logged in.</p>
+    </ng-container>
+
+    <ng-template #childView>
+      <router-outlet></router-outlet>
+    </ng-template>
   </main>
+  </section>
 </div>

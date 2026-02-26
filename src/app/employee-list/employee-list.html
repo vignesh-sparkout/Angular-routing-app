@@ -40,6 +40,10 @@
     </div>
   </div>
 
+  <div class="toaster" *ngIf="showToast" [ngClass]="toastType">
+    {{ toastMessage }}
+  </div>
+
   <div class="modal-backdrop" *ngIf="showAddModal">
     <div class="modal-card">
       <h3>{{ isEditMode ? 'Edit Employee' : 'Add Employee' }}</h3>

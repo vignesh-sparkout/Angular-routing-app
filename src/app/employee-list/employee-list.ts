@@ -69,6 +69,13 @@ export class EmployeeList {
     },
   ];
 
+  showDeleteModal = false;
+  employeeToDelete: Employee | null = null;
+  showToast = false;
+  toastMessage = '';
+  toastType: 'success' | 'error' = 'success';
+  private toastTimer: ReturnType<typeof setTimeout> | null = null;
+
   newEmployee: Employee = this.getEmptyEmployee();
 
   getEmptyEmployee(): Employee {
@@ -82,6 +89,21 @@ export class EmployeeList {
       phone: '',
       joiningDate: '',
     };
+  }
+
+  private triggerToast(message: string, type: 'success' | 'error') {
+    this.toastMessage = message;
+    this.toastType = type;
+    this.showToast = true;
+
+    if (this.toastTimer) {
+      clearTimeout(this.toastTimer);
+    }
+
+    this.toastTimer = setTimeout(() => {
+      this.showToast = false;
+      this.toastTimer = null;
+    }, 1500);
   }
 
   onAddEmployee() {
@@ -124,6 +146,7 @@ export class EmployeeList {
       this.employees = [...this.employees];
     } else {
       this.employees = [...this.employees, employeeData];
+      this.triggerToast('Employee Added Successfully!', 'success');
     }
 
     this.showAddModal = false;
@@ -134,19 +157,18 @@ export class EmployeeList {
   }
 
   onDelete(id: string) {
-    this.employeeToDelete = this.employees.find(emp => emp.id === id) || null;
-    this.showDeleteModal = true; 
+    this.employeeToDelete = this.employees.find((emp) => emp.id === id) || null;
+    this.showDeleteModal = true;
   }
-  showDeleteModal = false;
-  employeeToDelete: Employee | null = null;
 
   confirmDelete() {
     if (!this.employeeToDelete) return;
-    this.employees = this.employees.filter(emp => emp.id !== this.employeeToDelete!.id);
+    this.employees = this.employees.filter((emp) => emp.id !== this.employeeToDelete!.id);
     this.showDeleteModal = false;
     this.employeeToDelete = null;
+    this.triggerToast('Employee Deleted Successfully!', 'error');
   }
-  
+
   cancelDelete() {
     this.showDeleteModal = false;
     this.employeeToDelete = null;
